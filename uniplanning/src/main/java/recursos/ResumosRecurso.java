@@ -2,23 +2,23 @@ package recursos;
 
 import java.util.List;
 
-import entidades.Disciplina;
+import entidades.Resumos;
 import io.quarkus.panache.common.Sort;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 
-@Path("disciplina")
-public class DisciplinaRecurso {
+@Path("resumo")
+public class ResumosRecurso {
     @GET
-    public List<Disciplina> listar () {
-        return Disciplina.listAll(Sort.ascending("nome"));
+    public List<Resumos> listar(){
+        return Resumos.listAll(Sort.ascending("nome"));
     }
 
     @POST
     @Transactional
-    public void salvar(Disciplina disciplina){
-        disciplina.persist();
+    public void salvar(Resumos resumos){
+        resumos.persist();
     }
 }
