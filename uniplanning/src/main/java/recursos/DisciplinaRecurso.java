@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 
@@ -29,5 +30,15 @@ public class DisciplinaRecurso {
     @Transactional
     public void delete(@PathParam("id") Integer id){
         Disciplina.deleteById(id);
+    }
+
+    @PUT
+    @Path("/{id}")
+    @Transactional
+    public void editar(@PathParam("id") Integer id, Disciplina disciplinaAtualizado){
+        Disciplina disciplinaExistente = Disciplina.findById(id);
+
+        disciplinaExistente.nome = disciplinaAtualizado.nome;
+        disciplinaExistente.professor = disciplinaAtualizado.professor;
     }
 }
